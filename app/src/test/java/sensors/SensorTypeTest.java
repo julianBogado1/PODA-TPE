@@ -1,10 +1,9 @@
 package sensors;
 
-import ar.edu.itba.json.JSONProcessor;
-import ar.edu.itba.sensors.types.*;
-import ar.edu.itba.sensors.measures.Celsius;
-import ar.edu.itba.sensors.measures.Farenheit;
-import ar.edu.itba.sensors.types.WeatherSensorRead;
+import ar.edu.itba.infrastructure.types.*;
+import ar.edu.itba.io.JSONParser;
+import ar.edu.itba.infrastructure.measures.Celsius;
+import ar.edu.itba.infrastructure.measures.Farenheit;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,12 +14,12 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SensorTypeTest {
 
     private ObjectMapper mapper;
-    private JSONProcessor processor;
+    private JSONParser processor;
 
     @BeforeEach
     void setUp() {
         mapper = new ObjectMapper();
-        processor = JSONProcessor.makeProcessor();
+        processor = new JSONParser();
     }
 
     // ==================== V1.0 TRAFFIC ====================
@@ -37,7 +36,7 @@ public class SensorTypeTest {
                 }
                 """;
         JsonNode node = mapper.readTree(json);
-        SensorRead result = processor.parse(node);
+        SensorRead result = processor.parseSensorRead(node);
 
         assertInstanceOf(TrafficSensorRead.class, result);
     }
@@ -54,13 +53,13 @@ public class SensorTypeTest {
                 }
                 """;
         JsonNode node = mapper.readTree(json);
-        TrafficSensorRead sensor = (TrafficSensorRead) processor.parse(node);
+        TrafficSensorRead sensor = (TrafficSensorRead) processor.parseSensorRead(node);
 
         assertEquals("A1B2C3D4", sensor.id());
         assertEquals("2026-03-04T10:00:00Z", sensor.timestamp());
         assertEquals("1.0", sensor.schemaVersion());
         assertEquals(65.5, sensor.speed());
-        assertEquals(1, sensor.lane());
+        assertEquals("1", sensor.laneId());
     }
 
     // ==================== V1.5 TRAFFIC ====================
@@ -78,7 +77,7 @@ public class SensorTypeTest {
                 }
                 """;
         JsonNode node = mapper.readTree(json);
-        SensorRead result = processor.parse(node);
+        SensorRead result = processor.parseSensorRead(node);
 
         assertInstanceOf(TrafficSensorRead.class, result);
     }
@@ -96,7 +95,7 @@ public class SensorTypeTest {
                 }
                 """;
         JsonNode node = mapper.readTree(json);
-        TrafficSensorRead sensor = (TrafficSensorRead) processor.parse(node);
+        TrafficSensorRead sensor = (TrafficSensorRead) processor.parseSensorRead(node);
 
         assertEquals("e5f6g7h8", sensor.id());
         assertEquals("2026-03-04T10:05:00Z", sensor.timestamp());
@@ -119,7 +118,7 @@ public class SensorTypeTest {
                 }
                 """;
         JsonNode node = mapper.readTree(json);
-        SensorRead result = processor.parse(node);
+        SensorRead result = processor.parseSensorRead(node);
 
         assertInstanceOf(TrafficSensorRead.class, result);
     }
@@ -136,13 +135,13 @@ public class SensorTypeTest {
                 }
                 """;
         JsonNode node = mapper.readTree(json);
-        TrafficSensorRead sensor = (TrafficSensorRead) processor.parse(node);
+        TrafficSensorRead sensor = (TrafficSensorRead) processor.parseSensorRead(node);
 
         assertEquals("9A8B7C6D", sensor.id());
         assertEquals("2026-03-04T10:10:00Z", sensor.timestamp());
         assertEquals("2.0", sensor.schemaVersion());
         assertEquals(45.0, sensor.speed());
-        assertEquals(3, sensor.lane());
+        assertEquals("3", sensor.laneId());
     }
 
     // ==================== V1.0 WEATHER ====================
@@ -159,7 +158,7 @@ public class SensorTypeTest {
                 }
                 """;
         JsonNode node = mapper.readTree(json);
-        SensorRead result = processor.parse(node);
+        SensorRead result = processor.parseSensorRead(node);
 
         assertInstanceOf(WeatherSensorRead.class, result);
     }
@@ -176,13 +175,13 @@ public class SensorTypeTest {
                 }
                 """;
         JsonNode node = mapper.readTree(json);
-        WeatherSensorRead sensor = (WeatherSensorRead) processor.parse(node);
+        WeatherSensorRead sensor = (WeatherSensorRead) processor.parseSensorRead(node);
 
         assertEquals("B1B1B1B1", sensor.id());
         assertEquals("2026-03-04T10:15:00Z", sensor.timestamp());
         assertEquals("1.0", sensor.schemaVersion());
         assertInstanceOf(Farenheit.class, sensor.temperature());
-        assertEquals(95.0, sensor.temperatureValue());
+        assertEquals(95.0, sensor.temperature().toFahrenheit());
         assertEquals(40.0, sensor.humidity());
     }
 
@@ -201,7 +200,7 @@ public class SensorTypeTest {
                 }
                 """;
         JsonNode node = mapper.readTree(json);
-        SensorRead result = processor.parse(node);
+        SensorRead result = processor.parseSensorRead(node);
 
         assertInstanceOf(WeatherSensorRead.class, result);
     }
@@ -219,20 +218,20 @@ public class SensorTypeTest {
                 }
                 """;
         JsonNode node = mapper.readTree(json);
-        WeatherSensorRead sensor = (WeatherSensorRead) processor.parse(node);
+        WeatherSensorRead sensor = (WeatherSensorRead) processor.parseSensorRead(node);
 
         assertEquals("c2c2c2c2", sensor.id());
         assertEquals("2026-03-04T10:20:00Z", sensor.timestamp());
         assertEquals("1.5", sensor.schemaVersion());
         assertInstanceOf(Celsius.class, sensor.temperature());
-        assertEquals(32.5, sensor.temperatureValue());
+        assertEquals(32.5, sensor.temperature().toCelsius());
         assertEquals(85.0, sensor.humidity());
     }
 
     // ==================== V2.0 WEATHER ====================
 
     @Test
-    void testV2WeatherParsesCorrectType() throws Exception {
+    void testV2WeatherWithInvalidHumidityReturnsUnknown() throws Exception {
         String json = """
                 {
                     "id": "D3D3D3D3",
@@ -243,31 +242,9 @@ public class SensorTypeTest {
                 }
                 """;
         JsonNode node = mapper.readTree(json);
-        SensorRead result = processor.parse(node);
+        SensorRead result = processor.parseSensorRead(node);
 
-        assertInstanceOf(WeatherSensorRead.class, result);
-    }
-
-    @Test
-    void testV2WeatherHasCorrectAttributes() throws Exception {
-        String json = """
-                {
-                    "id": "D3D3D3D3",
-                    "timestamp": "2026-03-04T10:25:00Z",
-                    "schemaVersion": "2.0",
-                    "eventType": "WEATHER",
-                    "data": { "temperature": 15.0, "humidity": 120.0 }
-                }
-                """;
-        JsonNode node = mapper.readTree(json);
-        WeatherSensorRead sensor = (WeatherSensorRead) processor.parse(node);
-
-        assertEquals("D3D3D3D3", sensor.id());
-        assertEquals("2026-03-04T10:25:00Z", sensor.timestamp());
-        assertEquals("2.0", sensor.schemaVersion());
-        assertInstanceOf(Celsius.class, sensor.temperature());
-        assertEquals(15.0, sensor.temperatureValue());
-        assertEquals(120.0, sensor.humidity());
+        assertInstanceOf(UnknownRead.class, result);
     }
 
     // ==================== V1.0 REPORT ====================
@@ -284,7 +261,7 @@ public class SensorTypeTest {
                 }
                 """;
         JsonNode node = mapper.readTree(json);
-        SensorRead result = processor.parse(node);
+        SensorRead result = processor.parseSensorRead(node);
 
         assertInstanceOf(ReportSensorRead.class, result);
     }
@@ -301,7 +278,7 @@ public class SensorTypeTest {
                 }
                 """;
         JsonNode node = mapper.readTree(json);
-        ReportSensorRead sensor = (ReportSensorRead) processor.parse(node);
+        ReportSensorRead sensor = (ReportSensorRead) processor.parseSensorRead(node);
 
         assertEquals("J9J9J9J9", sensor.id());
         assertEquals("2026-03-04T10:55:00Z", sensor.timestamp());
@@ -325,7 +302,7 @@ public class SensorTypeTest {
                 }
                 """;
         JsonNode node = mapper.readTree(json);
-        SensorRead result = processor.parse(node);
+        SensorRead result = processor.parseSensorRead(node);
 
         assertInstanceOf(ReportSensorRead.class, result);
     }
@@ -343,7 +320,7 @@ public class SensorTypeTest {
                 }
                 """;
         JsonNode node = mapper.readTree(json);
-        ReportSensorRead sensor = (ReportSensorRead) processor.parse(node);
+        ReportSensorRead sensor = (ReportSensorRead) processor.parseSensorRead(node);
 
         assertEquals("f5f5f5f5", sensor.id());
         assertEquals("2026-03-04T10:35:00Z", sensor.timestamp());
@@ -366,7 +343,7 @@ public class SensorTypeTest {
                 }
                 """;
         JsonNode node = mapper.readTree(json);
-        SensorRead result = processor.parse(node);
+        SensorRead result = processor.parseSensorRead(node);
 
         assertInstanceOf(ReportSensorRead.class, result);
     }
@@ -383,7 +360,7 @@ public class SensorTypeTest {
                 }
                 """;
         JsonNode node = mapper.readTree(json);
-        ReportSensorRead sensor = (ReportSensorRead) processor.parse(node);
+        ReportSensorRead sensor = (ReportSensorRead) processor.parseSensorRead(node);
 
         assertEquals("G6G6G6G6", sensor.id());
         assertEquals("2026-03-04T10:40:00Z", sensor.timestamp());
@@ -396,7 +373,7 @@ public class SensorTypeTest {
 
     @Test
     void testNullNodeReturnsUnknown() {
-        SensorRead result = processor.parse(null);
+        SensorRead result = processor.parseSensorRead(null);
 
         assertInstanceOf(UnknownRead.class, result);
     }
@@ -413,7 +390,7 @@ public class SensorTypeTest {
                 }
                 """;
         JsonNode node = mapper.readTree(json);
-        SensorRead result = processor.parse(node);
+        SensorRead result = processor.parseSensorRead(node);
 
         assertInstanceOf(UnknownRead.class, result);
     }
@@ -430,7 +407,7 @@ public class SensorTypeTest {
                 }
                 """;
         JsonNode node = mapper.readTree(json);
-        WeatherSensorRead sensor = (WeatherSensorRead) processor.parse(node);
+        WeatherSensorRead sensor = (WeatherSensorRead) processor.parseSensorRead(node);
 
         assertInstanceOf(Farenheit.class, sensor.temperature());
     }
@@ -448,7 +425,7 @@ public class SensorTypeTest {
                 }
                 """;
         JsonNode node = mapper.readTree(json);
-        WeatherSensorRead sensor = (WeatherSensorRead) processor.parse(node);
+        WeatherSensorRead sensor = (WeatherSensorRead) processor.parseSensorRead(node);
 
         assertInstanceOf(Celsius.class, sensor.temperature());
     }
@@ -465,13 +442,13 @@ public class SensorTypeTest {
                 }
                 """;
         JsonNode node = mapper.readTree(json);
-        WeatherSensorRead sensor = (WeatherSensorRead) processor.parse(node);
+        WeatherSensorRead sensor = (WeatherSensorRead) processor.parseSensorRead(node);
 
         assertInstanceOf(Celsius.class, sensor.temperature());
     }
 
     @Test
-    void testV1TrafficWithNullVelocityParsesSpeed() throws Exception {
+    void testV1TrafficWithNullSpeedReturnsUnknown() throws Exception {
         String json = """
                 {
                     "id": "E4E4E4E4",
@@ -482,13 +459,13 @@ public class SensorTypeTest {
                 }
                 """;
         JsonNode node = mapper.readTree(json);
-        TrafficSensorRead sensor = (TrafficSensorRead) processor.parse(node);
+        SensorRead result = processor.parseSensorRead(node);
 
-        assertNull(sensor.speed());
+        assertInstanceOf(UnknownRead.class, result);
     }
 
     @Test
-    void testV1_5TrafficWithNullVelocity() throws Exception {
+    void testV1_5TrafficWithNullVelocityReturnsUnknown() throws Exception {
         String json = """
                 {
                     "id": "I8I8I8I8",
@@ -500,13 +477,13 @@ public class SensorTypeTest {
                 }
                 """;
         JsonNode node = mapper.readTree(json);
-        TrafficSensorRead sensor = (TrafficSensorRead) processor.parse(node);
+        SensorRead result = processor.parseSensorRead(node);
 
-        assertNull(sensor.speed());
+        assertInstanceOf(UnknownRead.class, result);
     }
 
     @Test
-    void testV1WeatherWithNullHumidity() throws Exception {
+    void testV1WeatherWithNullHumidityReturnsUnknown() throws Exception {
         String json = """
                 {
                     "id": "h7h7h7h7",
@@ -517,14 +494,13 @@ public class SensorTypeTest {
                 }
                 """;
         JsonNode node = mapper.readTree(json);
-        WeatherSensorRead sensor = (WeatherSensorRead) processor.parse(node);
+        SensorRead result = processor.parseSensorRead(node);
 
-        assertEquals(10.0, sensor.temperatureValue());
-        assertNull(sensor.humidity());
+        assertInstanceOf(UnknownRead.class, result);
     }
 
     @Test
-    void testV1_5ReportWithAreaAttribute() throws Exception {
+    void testV1_5ReportMissingSeverityReturnsUnknown() throws Exception {
         String json = """
                 {
                     "id": "m12m12m12",
@@ -536,10 +512,9 @@ public class SensorTypeTest {
                 }
                 """;
         JsonNode node = mapper.readTree(json);
-        ReportSensorRead sensor = (ReportSensorRead) processor.parse(node);
+        SensorRead result = processor.parseSensorRead(node);
 
-        assertEquals("m12m12m12", sensor.id());
-        assertEquals("STREET_CLEAN", sensor.category());
+        assertInstanceOf(UnknownRead.class, result);
     }
 
     @Test
@@ -556,7 +531,7 @@ public class SensorTypeTest {
                 }
                 """;
         JsonNode node = mapper.readTree(json);
-        TrafficSensorRead sensor = (TrafficSensorRead) processor.parse(node);
+        TrafficSensorRead sensor = (TrafficSensorRead) processor.parseSensorRead(node);
 
         assertEquals("1.5", sensor.schemaVersion());
     }
