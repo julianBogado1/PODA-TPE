@@ -1,21 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="sensors.FixedJsonTest" tests="15" skipped="0" failures="0" errors="0" timestamp="2026-04-09T17:15:09.464Z" hostname="Julians-MacBook-Pro.local" time="0.251">
+<testsuite name="sensors.FixedJsonTest" tests="1" skipped="1" failures="0" errors="0" timestamp="2026-04-09T17:30:36.272Z" hostname="Julians-MacBook-Pro.local" time="13.476">
   <properties/>
-  <testcase name="testRecord_c2c2c2c2()" classname="sensors.FixedJsonTest" time="0.231"/>
-  <testcase name="testRecord_J9J9J9J9()" classname="sensors.FixedJsonTest" time="0.0"/>
-  <testcase name="testRecord_B1B1B1B1()" classname="sensors.FixedJsonTest" time="0.001"/>
-  <testcase name="testRecord_G6G6G6G6()" classname="sensors.FixedJsonTest" time="0.0"/>
-  <testcase name="testRecord_D3D3D3D3_invalidHumidity()" classname="sensors.FixedJsonTest" time="0.0"/>
-  <testcase name="testRecord_E4E4E4E4_speedTooHigh()" classname="sensors.FixedJsonTest" time="0.002"/>
-  <testcase name="testRecord_e5f6g7h8()" classname="sensors.FixedJsonTest" time="0.001"/>
-  <testcase name="testRecord_I8I8I8I8_nullVelocity()" classname="sensors.FixedJsonTest" time="0.001"/>
-  <testcase name="testRecord_k10k10k10()" classname="sensors.FixedJsonTest" time="0.0"/>
-  <testcase name="testRecord_L11L11L11()" classname="sensors.FixedJsonTest" time="0.0"/>
-  <testcase name="testRecord_m12m12m12_missingSeverity()" classname="sensors.FixedJsonTest" time="0.001"/>
-  <testcase name="testRecord_9A8B7C6D()" classname="sensors.FixedJsonTest" time="0.0"/>
-  <testcase name="testRecord_A1B2C3D4()" classname="sensors.FixedJsonTest" time="0.0"/>
-  <testcase name="testRecord_h7h7h7h7_nullHumidity()" classname="sensors.FixedJsonTest" time="0.001"/>
-  <testcase name="testRecord_f5f5f5f5()" classname="sensors.FixedJsonTest" time="0.0"/>
+  <testcase name="testRecord_c2c2c2c2()" classname="sensors.FixedJsonTest" time="13.459">
+    <skipped/>
+  </testcase>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

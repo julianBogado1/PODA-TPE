@@ -3,18 +3,20 @@ package ar.edu.itba.business.models;
 public class BusinessQualityValidations {
     private static final Double MIN_SPEED = 0.0;
     private static final Double MAX_SPEED = 300.0;
-    private static final Double MAX_TEMP = 1000.0;
-    private static final Double MIN_TEMP = -50.0;
+    private static final Double MAX_TEMP = 100.0;
+    private static final Double MIN_TEMP = -30.0;
     private static final Double MIN_HUMIDITY = 0.0;
     private static final Double MAX_HUMIDITY = 100.0;
     private static final Double CRITICAL_MAX_TEMP = 50.0;
-    private static final Double CRITICAL_MIN_TEMP = -15.0;
+    private static final Double CRITICAL_MIN_TEMP = -10.0;
+    private static final Double CRITICAL_MAX_SPEED = 200.0;
+
 
 
 
 
     public boolean isCriticalSpeed(Double speed){
-        return false;
+        return speed!=null && valueBetween(speed, MIN_SPEED, CRITICAL_MAX_SPEED);
     }
     public boolean isCriticalTemp(Double temp){
         return temp!=null && valueBetween(temp, CRITICAL_MIN_TEMP, CRITICAL_MAX_TEMP);

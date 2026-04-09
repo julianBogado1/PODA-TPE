@@ -2,8 +2,8 @@ package ar.edu.itba.io.models;
 
 import ar.edu.itba.business.models.BusinessQualityValidations;
 import ar.edu.itba.business.models.SensorMetrics;
+import ar.edu.itba.business.sensor_types.*;
 import ar.edu.itba.infrastructure.models.SensorProcessState;
-import ar.edu.itba.infrastructure.models.types.*;
 import ar.edu.itba.infrastructure.models.measures.Celsius;
 import ar.edu.itba.infrastructure.models.measures.Farenheit;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -157,9 +157,9 @@ public class JSONParser implements Parser{
                         new Celsius(node.get("temp_c").asDouble()), attributes.get("HUMIDITY").asDouble());
             }
             case "report" -> {
-                if (!hasField(node, "category") || !hasField(attributes, "severity")) yield toUnknown(node);
+                if (!hasField(node, "category")) yield toUnknown(node);
                 yield new ReportSensorRead(id, timestamp, schemaVersion,
-                        node.get("category").asText(), null, attributes.get("severity").asText(), null);
+                        node.get("category").asText(), null, null, null);
             }
             default -> toUnknown(node);
         };

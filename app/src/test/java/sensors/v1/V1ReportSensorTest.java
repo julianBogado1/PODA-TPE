@@ -1,7 +1,9 @@
 package sensors.v1;
 
 import ar.edu.itba.business.models.BusinessQualityValidations;
-import ar.edu.itba.infrastructure.models.types.*;
+import ar.edu.itba.business.sensor_types.ReportSensorRead;
+import ar.edu.itba.business.sensor_types.SensorRead;
+import ar.edu.itba.business.sensor_types.UnknownRead;
 import ar.edu.itba.io.models.JSONParser;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
