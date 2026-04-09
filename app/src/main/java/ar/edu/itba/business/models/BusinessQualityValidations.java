@@ -16,10 +16,10 @@ public class BusinessQualityValidations {
 
 
     public boolean isCriticalSpeed(Double speed){
-        return speed!=null && valueBetween(speed, MIN_SPEED, CRITICAL_MAX_SPEED);
+        return speed!=null && speed > CRITICAL_MAX_SPEED;
     }
     public boolean isCriticalTemp(Double temp){
-        return temp!=null && valueBetween(temp, CRITICAL_MIN_TEMP, CRITICAL_MAX_TEMP);
+        return temp!=null && !valueBetween(temp, CRITICAL_MIN_TEMP, CRITICAL_MAX_TEMP);
     }
     /*
     * Business logic dictates all report type measures are critical

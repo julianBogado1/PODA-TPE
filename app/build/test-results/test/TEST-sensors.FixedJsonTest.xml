@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="sensors.FixedJsonTest" tests="1" skipped="1" failures="0" errors="0" timestamp="2026-04-09T17:30:36.272Z" hostname="Julians-MacBook-Pro.local" time="13.476">
+<testsuite name="sensors.FixedJsonTest" tests="11" skipped="1" failures="0" errors="0" timestamp="2026-04-09T17:30:50.439Z" hostname="Julians-MacBook-Pro.local" time="615.269">
   <properties/>
-  <testcase name="testRecord_c2c2c2c2()" classname="sensors.FixedJsonTest" time="13.459">
+  <testcase name="testRecord_c2c2c2c2()" classname="sensors.FixedJsonTest" time="83.807"/>
+  <testcase name="testRecord_J9J9J9J9()" classname="sensors.FixedJsonTest" time="2.248"/>
+  <testcase name="testRecord_B1B1B1B1()" classname="sensors.FixedJsonTest" time="1.285"/>
+  <testcase name="testRecord_G6G6G6G6()" classname="sensors.FixedJsonTest" time="1.477"/>
+  <testcase name="testRecord_D3D3D3D3_invalidHumidity()" classname="sensors.FixedJsonTest" time="1.591"/>
+  <testcase name="testRecord_E4E4E4E4_speedTooHigh()" classname="sensors.FixedJsonTest" time="0.972"/>
+  <testcase name="testRecord_e5f6g7h8()" classname="sensors.FixedJsonTest" time="18.726"/>
+  <testcase name="testRecord_I8I8I8I8_nullVelocity()" classname="sensors.FixedJsonTest" time="12.439"/>
+  <testcase name="testRecord_k10k10k10()" classname="sensors.FixedJsonTest" time="9.698"/>
+  <testcase name="testRecord_L11L11L11()" classname="sensors.FixedJsonTest" time="5.359"/>
+  <testcase name="testRecord_m12m12m12_missingSeverity()" classname="sensors.FixedJsonTest" time="477.644">
     <skipped/>
   </testcase>
   <system-out><![CDATA[]]></system-out>
