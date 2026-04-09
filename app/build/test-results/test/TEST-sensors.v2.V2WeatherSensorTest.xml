@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="sensors.v2.V2WeatherSensorTest" tests="18" skipped="0" failures="0" errors="0" timestamp="2026-04-09T17:15:09.777Z" hostname="Julians-MacBook-Pro.local" time="0.006">
+  <properties/>
+  <testcase name="testInvalidHumidityReturnsUnknown()" classname="sensors.v2.V2WeatherSensorTest" time="0.0"/>
+  <testcase name="testHasCorrectAttributes()" classname="sensors.v2.V2WeatherSensorTest" time="0.001"/>
+  <testcase name="testNullTemperatureReturnsUnknown()" classname="sensors.v2.V2WeatherSensorTest" time="0.0"/>
+  <testcase name="testTemperatureBelowMinReturnsUnknown()" classname="sensors.v2.V2WeatherSensorTest" time="0.0"/>
+  <testcase name="testTemperatureAtMinBoundaryIsValid()" classname="sensors.v2.V2WeatherSensorTest" time="0.001"/>
+  <testcase name="testMissingTemperatureReturnsUnknown()" classname="sensors.v2.V2WeatherSensorTest" time="0.0"/>
+  <testcase name="testNullHumidityReturnsUnknown()" classname="sensors.v2.V2WeatherSensorTest" time="0.0"/>
+  <testcase name="testHumidityAtMinBoundaryIsValid()" classname="sensors.v2.V2WeatherSensorTest" time="0.001"/>
+  <testcase name="testTemperatureAboveMaxReturnsUnknown()" classname="sensors.v2.V2WeatherSensorTest" time="0.0"/>
+  <testcase name="testParsesCorrectType()" classname="sensors.v2.V2WeatherSensorTest" time="0.0"/>
+  <testcase name="testTemperatureIsCelsius()" classname="sensors.v2.V2WeatherSensorTest" time="0.001"/>
+  <testcase name="testHumidityBelowMinReturnsUnknown()" classname="sensors.v2.V2WeatherSensorTest" time="0.0"/>
+  <testcase name="testTemperatureAtMaxBoundaryIsValid()" classname="sensors.v2.V2WeatherSensorTest" time="0.0"/>
+  <testcase name="testMissingHumidityReturnsUnknown()" classname="sensors.v2.V2WeatherSensorTest" time="0.0"/>
+  <testcase name="testCriticalTemperature()" classname="sensors.v2.V2WeatherSensorTest" time="0.001"/>
+  <testcase name="testHumidityAtMaxBoundaryIsValid()" classname="sensors.v2.V2WeatherSensorTest" time="0.0"/>
+  <testcase name="testNonCriticalTemperatureAboveRange()" classname="sensors.v2.V2WeatherSensorTest" time="0.0"/>
+  <testcase name="testNonCriticalTemperatureBelowRange()" classname="sensors.v2.V2WeatherSensorTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

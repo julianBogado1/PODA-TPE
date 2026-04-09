@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="sensors.v1_5.V1_5TrafficSensorTest" tests="14" skipped="0" failures="0" errors="0" timestamp="2026-04-09T17:15:09.749Z" hostname="Julians-MacBook-Pro.local" time="0.007">
+  <properties/>
+  <testcase name="testHasCorrectAttributes()" classname="sensors.v1_5.V1_5TrafficSensorTest" time="0.0"/>
+  <testcase name="testNullVelocityReturnsUnknown()" classname="sensors.v1_5.V1_5TrafficSensorTest" time="0.001"/>
+  <testcase name="testMissingVelocityFieldReturnsUnknown()" classname="sensors.v1_5.V1_5TrafficSensorTest" time="0.0"/>
+  <testcase name="testMissingKindReturnsUnknown()" classname="sensors.v1_5.V1_5TrafficSensorTest" time="0.001"/>
+  <testcase name="testMissingAttributesReturnsUnknown()" classname="sensors.v1_5.V1_5TrafficSensorTest" time="0.0"/>
+  <testcase name="testVersionIsNormalizedToString()" classname="sensors.v1_5.V1_5TrafficSensorTest" time="0.001"/>
+  <testcase name="testSpeedAtMinBoundaryIsValid()" classname="sensors.v1_5.V1_5TrafficSensorTest" time="0.0"/>
+  <testcase name="testParsesCorrectType()" classname="sensors.v1_5.V1_5TrafficSensorTest" time="0.001"/>
+  <testcase name="testNullLaneIdReturnsUnknown()" classname="sensors.v1_5.V1_5TrafficSensorTest" time="0.0"/>
+  <testcase name="testSpeedBelowMinReturnsUnknown()" classname="sensors.v1_5.V1_5TrafficSensorTest" time="0.001"/>
+  <testcase name="testUnknownKindValueReturnsUnknown()" classname="sensors.v1_5.V1_5TrafficSensorTest" time="0.0"/>
+  <testcase name="testSpeedAtMaxBoundaryIsValid()" classname="sensors.v1_5.V1_5TrafficSensorTest" time="0.0"/>
+  <testcase name="testMissingLaneIdInAttributesReturnsUnknown()" classname="sensors.v1_5.V1_5TrafficSensorTest" time="0.0"/>
+  <testcase name="testSpeedAboveMaxReturnsUnknown()" classname="sensors.v1_5.V1_5TrafficSensorTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

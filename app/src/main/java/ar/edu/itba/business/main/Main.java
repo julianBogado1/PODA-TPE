@@ -1,9 +1,8 @@
-import ar.edu.itba.business.SensorReport;
 import ar.edu.itba.business.models.SensorMetrics;
 import ar.edu.itba.infrastructure.SensorProcessor;
-import ar.edu.itba.io.JSONDataSource;
-import ar.edu.itba.io.JSONParser;
-import ar.edu.itba.io.StringPrinter;
+import ar.edu.itba.io.models.JSONDataSource;
+import ar.edu.itba.io.models.JSONParser;
+import ar.edu.itba.io.models.StringPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 void main() {

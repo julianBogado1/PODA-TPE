@@ -7,7 +7,7 @@ public class BusinessQualityValidations {
     private static final Double MIN_TEMP = -50.0;
     private static final Double MIN_HUMIDITY = 0.0;
     private static final Double MAX_HUMIDITY = 100.0;
-    private static final Double CRITICAL_MAX_TEMP = 500.0;
+    private static final Double CRITICAL_MAX_TEMP = 50.0;
     private static final Double CRITICAL_MIN_TEMP = -15.0;
 
 

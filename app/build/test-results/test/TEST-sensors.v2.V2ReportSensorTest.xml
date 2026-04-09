@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="sensors.v2.V2ReportSensorTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-04-09T17:15:09.765Z" hostname="Julians-MacBook-Pro.local" time="0.005">
+  <properties/>
+  <testcase name="testMissingStatusReturnsUnknown()" classname="sensors.v2.V2ReportSensorTest" time="0.0"/>
+  <testcase name="testHasCorrectAttributes()" classname="sensors.v2.V2ReportSensorTest" time="0.001"/>
+  <testcase name="testReportIsAlwaysCritical()" classname="sensors.v2.V2ReportSensorTest" time="0.0"/>
+  <testcase name="testStatusIsMappedFromData()" classname="sensors.v2.V2ReportSensorTest" time="0.0"/>
+  <testcase name="testSeverityIsNull()" classname="sensors.v2.V2ReportSensorTest" time="0.001"/>
+  <testcase name="testNullCategoryReturnsUnknown()" classname="sensors.v2.V2ReportSensorTest" time="0.0"/>
+  <testcase name="testDescriptionIsNull()" classname="sensors.v2.V2ReportSensorTest" time="0.0"/>
+  <testcase name="testParsesCorrectType()" classname="sensors.v2.V2ReportSensorTest" time="0.001"/>
+  <testcase name="testMissingCategoryReturnsUnknown()" classname="sensors.v2.V2ReportSensorTest" time="0.0"/>
+  <testcase name="testNullStatusReturnsUnknown()" classname="sensors.v2.V2ReportSensorTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

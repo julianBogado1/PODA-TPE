@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="sensors.v1.V1TrafficSensorTest" tests="17" skipped="0" failures="0" errors="0" timestamp="2026-04-09T17:15:09.724Z" hostname="Julians-MacBook-Pro.local" time="0.009">
+  <properties/>
+  <testcase name="testHasCorrectAttributes()" classname="sensors.v1.V1TrafficSensorTest" time="0.0"/>
+  <testcase name="testMissingIdReturnsUnknown()" classname="sensors.v1.V1TrafficSensorTest" time="0.0"/>
+  <testcase name="testNullPayloadReturnsUnknown()" classname="sensors.v1.V1TrafficSensorTest" time="0.0"/>
+  <testcase name="testNumericLaneConvertsToString()" classname="sensors.v1.V1TrafficSensorTest" time="0.001"/>
+  <testcase name="testNullLaneReturnsUnknown()" classname="sensors.v1.V1TrafficSensorTest" time="0.0"/>
+  <testcase name="testMissingTypeReturnsUnknown()" classname="sensors.v1.V1TrafficSensorTest" time="0.001"/>
+  <testcase name="testNullNodeReturnsUnknown()" classname="sensors.v1.V1TrafficSensorTest" time="0.001"/>
+  <testcase name="testSpeedAtMinBoundaryIsValid()" classname="sensors.v1.V1TrafficSensorTest" time="0.001"/>
+  <testcase name="testParsesCorrectType()" classname="sensors.v1.V1TrafficSensorTest" time="0.0"/>
+  <testcase name="testMissingTimestampReturnsUnknown()" classname="sensors.v1.V1TrafficSensorTest" time="0.001"/>
+  <testcase name="testSpeedBelowMinReturnsUnknown()" classname="sensors.v1.V1TrafficSensorTest" time="0.0"/>
+  <testcase name="testUnknownTypeValueReturnsUnknown()" classname="sensors.v1.V1TrafficSensorTest" time="0.0"/>
+  <testcase name="testSpeedAtMaxBoundaryIsValid()" classname="sensors.v1.V1TrafficSensorTest" time="0.0"/>
+  <testcase name="testMissingPayloadReturnsUnknown()" classname="sensors.v1.V1TrafficSensorTest" time="0.0"/>
+  <testcase name="testMissingLaneReturnsUnknown()" classname="sensors.v1.V1TrafficSensorTest" time="0.001"/>
+  <testcase name="testSpeedAboveMaxReturnsUnknown()" classname="sensors.v1.V1TrafficSensorTest" time="0.0"/>
+  <testcase name="testNullSpeedReturnsUnknown()" classname="sensors.v1.V1TrafficSensorTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
